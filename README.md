@@ -5,10 +5,6 @@
 
 A professional, type-safe TMDB API wrapper for movies and TV shows. Built for server-side rendering and Node.js with zero browser APIs.
 
-[![npm version](https://img.shields.io/npm/v/@abdo/tmdb-api)](https://www.npmjs.com/package/@abdo/tmdb-api)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
-
 ---
 
 ## Features
