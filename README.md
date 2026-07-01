@@ -1,7 +1,7 @@
 ## README.md
 
 ```markdown
-# @abdo/tmdb-api
+# @abdelrahman/tmdb-api
 
 A professional, type-safe TMDB API wrapper for movies and TV shows. Built for server-side rendering and Node.js with zero browser APIs.
 
@@ -23,15 +23,15 @@ A professional, type-safe TMDB API wrapper for movies and TV shows. Built for se
 ## Installation
 
 ```bash
-npm install @abdo/tmdb-api
+npm install @abdelrahman/tmdb-api
 ```
 
 ```bash
-pnpm add @abdo/tmdb-api
+pnpm add @abdelrahman/tmdb-api
 ```
 
 ```bash
-yarn add @abdo/tmdb-api
+yarn add @abdelrahman/tmdb-api
 ```
 
 ---
@@ -39,7 +39,7 @@ yarn add @abdo/tmdb-api
 ## Quick Start
 
 ```typescript
-import { TMDB } from '@abdo/tmdb-api';
+import { TMDB } from '@abdelrahman/tmdb-api';
 
 const api = new TMDB({
   apiKey: process.env.TMDB_API_KEY
@@ -168,7 +168,7 @@ api.player.tv(60735, 1, 1)
 ### Image Helpers
 
 ```typescript
-import { image } from '@abdo/tmdb-api';
+import { image } from '@abdelrahman/tmdb-api';
 
 image.poster(path)
 image.backdrop(path)
@@ -190,7 +190,7 @@ image.w92(path)
 ### Next.js App Router (Server Component)
 
 ```typescript
-import { TMDB, image } from '@abdo/tmdb-api';
+import { TMDB, image } from '@abdelrahman/tmdb-api';
 
 const api = new TMDB({
   apiKey: process.env.TMDB_API_KEY!
@@ -220,7 +220,7 @@ export default async function MoviesPage() {
 
 ```typescript
 import express from 'express';
-import { TMDB, TMDBError } from '@abdo/tmdb-api';
+import { TMDB, TMDBError } from '@abdelrahman/tmdb-api';
 
 const app = express();
 const api = new TMDB({ 
@@ -299,7 +299,7 @@ async function getMoviePage(movieId: number) {
 ## Error Handling
 
 ```typescript
-import { TMDBError } from '@abdo/tmdb-api';
+import { TMDBError } from '@abdelrahman/tmdb-api';
 
 try {
   const movie = await api.movies.details(999999);
@@ -339,7 +339,7 @@ import type {
   Crew,
   PaginatedResponse,
   TMDBConfig 
-} from '@abdo/tmdb-api';
+} from '@abdelrahman/tmdb-api';
 
 // All responses are fully typed
 const movie: MovieDetails = await api.movies.details(550);
@@ -398,7 +398,7 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 
 ## License
 
-MIT © Abdo
+MIT © abdelrahman
 
 ---
 
