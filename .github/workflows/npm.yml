@@ -26,6 +26,14 @@ jobs:
       - name: Build package
         run: npm run build
 
+      - name: Check and bump version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          if npm view tmdb-api-v1@$CURRENT_VERSION version > /dev/null 2>&1; then
+            echo "Version $CURRENT_VERSION already exists, bumping..."
+            npm version patch --no-git-tag-version
+          fi
+
       - name: Publish to npm
         run: npm publish --access public
         env:
