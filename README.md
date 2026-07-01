@@ -23,15 +23,15 @@ A professional, type-safe TMDB API wrapper for movies and TV shows. Built for se
 ## Installation
 
 ```bash
-npm install @abdelrahman/tmdb-api
+npm install tmdb-api
 ```
 
 ```bash
-pnpm add @abdelrahman/tmdb-api
+pnpm add tmdb-api
 ```
 
 ```bash
-yarn add @abdelrahman/tmdb-api
+yarn add tmdb-api
 ```
 
 ---
@@ -39,7 +39,7 @@ yarn add @abdelrahman/tmdb-api
 ## Quick Start
 
 ```typescript
-import { TMDB } from '@abdelrahman/tmdb-api';
+import { TMDB } from 'tmdb-api';
 
 const api = new TMDB({
   apiKey: process.env.TMDB_API_KEY
@@ -168,7 +168,7 @@ api.player.tv(60735, 1, 1)
 ### Image Helpers
 
 ```typescript
-import { image } from '@abdelrahman/tmdb-api';
+import { image } from 'tmdb-api';
 
 image.poster(path)
 image.backdrop(path)
@@ -190,7 +190,7 @@ image.w92(path)
 ### Next.js App Router (Server Component)
 
 ```typescript
-import { TMDB, image } from '@abdelrahman/tmdb-api';
+import { TMDB, image } from 'tmdb-api';
 
 const api = new TMDB({
   apiKey: process.env.TMDB_API_KEY!
@@ -220,7 +220,7 @@ export default async function MoviesPage() {
 
 ```typescript
 import express from 'express';
-import { TMDB, TMDBError } from '@abdelrahman/tmdb-api';
+import { TMDB, TMDBError } from 'tmdb-api';
 
 const app = express();
 const api = new TMDB({ 
@@ -299,7 +299,7 @@ async function getMoviePage(movieId: number) {
 ## Error Handling
 
 ```typescript
-import { TMDBError } from '@abdelrahman/tmdb-api';
+import { TMDBError } from 'tmdb-api';
 
 try {
   const movie = await api.movies.details(999999);
