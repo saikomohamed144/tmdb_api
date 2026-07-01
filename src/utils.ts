@@ -89,7 +89,7 @@ export async function fetchFromTMDB<T>(
       throw error;
     }
     
-    if (error instanceof DOMException && error.name === 'AbortError') {
+    if (error instanceof Error && error.name === 'AbortError') {
       throw new TMDBError(`Request timed out after ${timeout}ms. Please try again.`, 408);
     }
     
