@@ -1,6 +1,6 @@
 {
-  "name": "@abdo/tmdb-api",
-  "version": "1.0.5",
+  "name": "@abdelrahman/tmdb-api",
+  "version": "1.0.0",
   "description": "A professional, type-safe TMDB API wrapper for movies and TV shows",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -32,7 +32,7 @@
     "nextjs",
     "server-side"
   ],
-  "author": "Abdo",
+  "author": "Abdelrahman",
   "license": "MIT",
   "devDependencies": {
     "tsup": "^8.0.0",
