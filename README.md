@@ -1,6 +1,3 @@
----
-
-```markdown
 <p align="center">
   <img src="https://img.icons8.com/color/96/000000/movie.png" alt="Movie Icon" width="80" />
 </p>
