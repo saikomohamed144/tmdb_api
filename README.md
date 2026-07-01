@@ -1,258 +1,343 @@
-Here's a beautiful, well-organized README.md for your package:
-
 ```markdown
-<div align="center">
+<p align="center">
+  <img src="https://img.icons8.com/color/96/000000/movie.png" alt="@abdo/tmdb-api" width="120" />
+</p>
 
-# 🎬 @abdo/tmdb-api
+<h1 align="center">@abdo/tmdb-api</h1>
 
-### The Ultimate TypeScript TMDB API Wrapper
+<p align="center">
+  <strong>Build Movie & TV Show Websites with Minimal Code</strong>
+</p>
 
-*A professional, type-safe, server-side compatible TMDB API wrapper that helps you build movie and TV show websites with minimal code*
+<p align="center">
+  <a href="https://www.npmjs.com/package/@abdo/tmdb-api">
+    <img src="https://img.shields.io/npm/v/@abdo/tmdb-api?color=cb3837&logo=npm" alt="npm version" />
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License" />
+  </a>
+  <a href="https://www.typescriptlang.org/">
+    <img src="https://img.shields.io/badge/TypeScript-5.3+-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  </a>
+  <a href="https://nodejs.org/">
+    <img src="https://img.shields.io/badge/Node.js-16+-339933?logo=node.js&logoColor=white" alt="Node.js" />
+  </a>
+</p>
 
-[![npm version](https://img.shields.io/npm/v/@abdo/tmdb-api.svg)](https://www.npmjs.com/package/@abdo/tmdb-api)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-16+-green.svg)](https://nodejs.org/)
+<br />
 
-</div>
+---
+
+## 📖 Table of Contents
+
+- [Features](#-features)
+- [Installation](#-installation)
+- [Quick Start](#-quick-start)
+- [API Reference](#-api-reference)
+  - [Movies](#-movies)
+  - [TV Shows](#-tv-shows)
+  - [Genres](#-genres)
+  - [Search](#-search)
+  - [Player](#-player)
+  - [Images](#-images)
+- [Examples](#-examples)
+  - [Next.js Server Component](#nextjs-server-component)
+  - [Express.js API](#expressjs-api)
+  - [React Component](#react-component)
+- [Error Handling](#-error-handling)
+- [Configuration](#-configuration)
+- [TypeScript](#-typescript)
+- [Supported Environments](#-supported-environments)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
 ## ✨ Features
 
-<table>
-<tr>
-<td width="50%">
-
-### 🎯 Core Features
-- 🎬 **Complete TMDB API** - Movies, TV Shows, Search, Genres & more
-- 🎭 **Smart Genre Helpers** - No more memorizing genre IDs
-- 🖼️ **Image URL Builder** - Effortless image URL generation
-- 🎮 **Streaming URLs** - Generate embed player URLs instantly
-
-</td>
-<td width="50%">
-
-### 🚀 Developer Experience
-- 🔒 **100% Type-Safe** - Full TypeScript with strict mode
-- 🖥️ **Server-First** - Zero browser APIs, perfect for SSR
-- ⚡ **Tree Shakeable** - Import only what you need
-- 📦 **Dual Format** - CJS & ESM support out of the box
-
-</td>
-</tr>
-</table>
+| Category | Features |
+|----------|----------|
+| 🎬 **Movies & TV** | Popular, Trending, Now Playing, Upcoming, Top Rated, Details, Cast, Videos, Images |
+| 🎭 **Genres** | 18+ genre helpers - Action, Comedy, Horror, Romance, Sci-Fi & more |
+| 🔍 **Search** | Movies, TV Shows, Multi-Search, Person Search |
+| 🎮 **Player** | Generate streaming embed URLs for movies & TV shows |
+| 🖼️ **Images** | Poster, Backdrop, Profile, Logo with multiple sizes |
+| 🔒 **TypeScript** | 100% type-safe with strict mode, full IntelliSense |
+| 🚀 **Server-Side** | Works in Node.js, Next.js, Express, Astro, Remix, Nuxt |
+| ⚡ **Performance** | Tree shakeable, small bundle, dual CJS/ESM format |
 
 ---
 
 ## 📦 Installation
 
 ```bash
-# npm
 npm install @abdo/tmdb-api
+```
 
-# pnpm
+```bash
 pnpm add @abdo/tmdb-api
+```
 
-# yarn
+```bash
 yarn add @abdo/tmdb-api
 ```
 
 ---
 
-## 🔑 Environment Setup
-
-Create a `.env` file in your project root:
+## 🔑 Environment Variables
 
 ```env
-TMDB_API_KEY=your_api_key_here
+TMDB_API_KEY=your_tmdb_api_key_here
 ```
 
-> 📌 **Get your API key:** [https://www.themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)
+> Get your free API key at [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)
 
 ---
 
 ## 🚀 Quick Start
 
 ```typescript
-import { TMDB } from '@abdo/tmdb-api';
+import { TMDB } from '@abdo/tmdb-api'
 
+// Initialize with your API key
 const api = new TMDB({
   apiKey: process.env.TMDB_API_KEY
-});
+})
 
-// 🎥 Fetch popular movies
-const { results } = await api.movies.popular();
+// Get popular movies
+const { results } = await api.movies.popular()
 
-// 🔍 Search for movies
-const { results: searchResults } = await api.search.movie('Inception');
+// Get horror movies (documentaries excluded)
+const horror = await api.movies.horror()
 
-// 🎮 Generate streaming URL
-const streamUrl = api.player.movie(27205); // Inception
+// Search for movies
+const search = await api.search.movie('The Matrix')
+
+// Generate streaming URL
+const url = api.player.movie(603) // The Matrix
 ```
 
 ---
 
 ## 📚 API Reference
 
-### 🎥 Movies API
-
-<details>
-<summary><b>Click to expand all movie methods</b></summary>
+### 🎬 Movies
 
 ```typescript
-// 📊 Discover & Browse
-await api.movies.popular(page?: number)
-await api.movies.trending(timeWindow?: 'day' | 'week')
-await api.movies.nowPlaying(page?: number)
-await api.movies.upcoming(page?: number)
-await api.movies.topRated(page?: number)
-await api.movies.latest()
+// Browse Movies
+const popular = await api.movies.popular()
+const trending = await api.movies.trending('week')
+const nowPlaying = await api.movies.nowPlaying()
+const upcoming = await api.movies.upcoming()
+const topRated = await api.movies.topRated()
+const latest = await api.movies.latest()
 
-// 📝 Movie Details
-await api.movies.details(movieId: number)
-await api.movies.cast(movieId: number)
-await api.movies.videos(movieId: number)
-await api.movies.images(movieId: number)
-await api.movies.recommendations(movieId: number)
-await api.movies.similar(movieId: number)
-await api.movies.reviews(movieId: number)
-```
-</details>
+// Movie Details
+const movie = await api.movies.details(550)           // Fight Club
+const cast = await api.movies.cast(550)               // Cast & Crew
+const videos = await api.movies.videos(550)           // Trailers & Clips
+const images = await api.movies.images(550)           // Posters & Backdrops
 
-### 📺 TV Shows API
-
-<details>
-<summary><b>Click to expand all TV methods</b></summary>
-
-```typescript
-// 📊 Discover & Browse
-await api.tv.popular(page?: number)
-await api.tv.trending(timeWindow?: 'day' | 'week')
-await api.tv.topRated(page?: number)
-await api.tv.airingToday(page?: number)
-await api.tv.onTheAir(page?: number)
-
-// 📝 TV Details
-await api.tv.details(tvId: number)
-await api.tv.cast(tvId: number)
-await api.tv.videos(tvId: number)
-await api.tv.images(tvId: number)
-await api.tv.recommendations(tvId: number)
-await api.tv.similar(tvId: number)
-await api.tv.reviews(tvId: number)
-
-// 🎬 Seasons & Episodes
-await api.tv.seasonDetails(tvId: number, seasonNumber: number)
-await api.tv.episodeDetails(tvId: number, seasonNumber: number, episodeNumber: number)
-```
-</details>
-
-### 🎭 Genre Helpers
-
-All genre methods **automatically exclude documentaries** and return only relevant movies:
-
-```typescript
-await api.movies.action()          // 💥 Action
-await api.movies.adventure()       // 🗺️ Adventure
-await api.movies.animation()       // 🎨 Animation
-await api.movies.comedy()          // 😂 Comedy
-await api.movies.crime()           // 🕵️ Crime
-await api.movies.drama()           // 🎭 Drama
-await api.movies.family()          // 👨‍👩‍👧‍👦 Family
-await api.movies.fantasy()         // 🧙 Fantasy
-await api.movies.history()         // 📜 History
-await api.movies.horror()          // 👻 Horror
-await api.movies.music()           // 🎵 Music
-await api.movies.mystery()         // 🔍 Mystery
-await api.movies.romance()         // 💕 Romance
-await api.movies.scienceFiction()  // 🚀 Sci-Fi
-await api.movies.thriller()        // 😱 Thriller
-await api.movies.war()             // ⚔️ War
-await api.movies.western()         // 🤠 Western
-
-// 🎯 Convenience aliases
-await api.movies.cartoon()         // Same as animation()
-await api.movies.kids()            // Same as family()
+// Related Movies
+const similar = await api.movies.similar(550)         // Similar movies
+const recommendations = await api.movies.recommendations(550)
+const reviews = await api.movies.reviews(550)         // User reviews
 ```
 
-### 🔍 Search API
+### 📺 TV Shows
 
 ```typescript
-// Search movies
-const { results: movies } = await api.search.movie('The Matrix')
+// Browse TV Shows
+const popular = await api.tv.popular()
+const trending = await api.tv.trending('day')
+const topRated = await api.tv.topRated()
+const airingToday = await api.tv.airingToday()
+const onTheAir = await api.tv.onTheAir()
 
-// Search TV shows
-const { results: shows } = await api.search.tv('Breaking Bad')
+// TV Show Details
+const show = await api.tv.details(1399)               // Game of Thrones
+const cast = await api.tv.cast(1399)
+const videos = await api.tv.videos(1399)
+const images = await api.tv.images(1399)
 
-// Multi-search (movies + TV + people)
-const { results: all } = await api.search.multi('Avatar')
+// Seasons & Episodes
+const season1 = await api.tv.seasonDetails(1399, 1)
+const episode = await api.tv.episodeDetails(1399, 1, 1)
 
-// Search people
-const { results: people } = await api.search.person('Tom Hanks')
+// Related TV Shows
+const similar = await api.tv.similar(1399)
+const recommendations = await api.tv.recommendations(1399)
+const reviews = await api.tv.reviews(1399)
 ```
 
-### 🎮 Player URLs
+### 🎭 Genres
+
+Documentaries are automatically excluded from all genre results:
 
 ```typescript
-// 🎥 Movie streaming URL
+// All genre helpers are available
+await api.movies.action()          // 💥 Action Movies
+await api.movies.adventure()       // 🗺️ Adventure Movies
+await api.movies.animation()       // 🎨 Animation Movies
+await api.movies.cartoon()         // 🎨 Cartoon Movies (alias)
+await api.movies.comedy()          // 😂 Comedy Movies
+await api.movies.crime()           // 🕵️ Crime Movies
+await api.movies.drama()           // 🎭 Drama Movies
+await api.movies.family()          // 👨‍👩‍👧‍👦 Family Movies
+await api.movies.kids()            // 👶 Kids Movies (alias)
+await api.movies.fantasy()         // 🧙 Fantasy Movies
+await api.movies.history()         // 📜 History Movies
+await api.movies.horror()          // 👻 Horror Movies
+await api.movies.music()           // 🎵 Music Movies
+await api.movies.mystery()         // 🔍 Mystery Movies
+await api.movies.romance()         // 💕 Romance Movies
+await api.movies.scienceFiction()  // 🚀 Sci-Fi Movies
+await api.movies.thriller()        // 😱 Thriller Movies
+await api.movies.war()             // ⚔️ War Movies
+await api.movies.western()         // 🤠 Western Movies
+```
+
+### 🔍 Search
+
+```typescript
+// Search by type
+const movies = await api.search.movie('John Wick')
+const tvShows = await api.search.tv('Breaking Bad')
+const all = await api.search.multi('Avatar')
+const people = await api.search.person('Tom Cruise')
+
+// With pagination
+const page2 = await api.search.movie('Marvel', 2)
+```
+
+### 🎮 Player
+
+```typescript
+// Generate streaming embed URLs
 const movieUrl = api.player.movie(609681)
-// → https://www.2embed.cc/embed/609681
+// Output: https://www.2embed.cc/embed/609681
 
-// 📺 TV show episode streaming URL
 const tvUrl = api.player.tv(60735, 1, 1)
-// → https://www.2embed.cc/embedtv/60735&s=1&e=1
+// Output: https://www.2embed.cc/embedtv/60735&s=1&e=1
 ```
 
-### 🖼️ Image Helpers
+### 🖼️ Images
 
 ```typescript
 import { image } from '@abdo/tmdb-api'
 
 // Different sizes
-image.original(path)   // Original size
-image.w1280(path)      // 1280px width
-image.w780(path)       // 780px width
-image.w500(path)       // 500px width
-image.w342(path)       // 342px width
-image.w185(path)       // 185px width
-image.w154(path)       // 154px width
-image.w92(path)        // 92px width
+image.original(movie.poster_path)    // Original quality
+image.w1280(movie.backdrop_path)     // 1280px width
+image.w780(movie.poster_path)        // 780px width
+image.w500(movie.poster_path)        // 500px width
+image.w342(movie.poster_path)        // 342px width
+image.w185(movie.poster_path)        // 185px width
+image.w154(movie.poster_path)        // 154px width
+image.w92(movie.poster_path)         // 92px width
 
 // Convenience methods
-image.poster(path)     // w500 poster
-image.backdrop(path)   // w1280 backdrop
-image.profile(path)    // w185 profile
-image.logo(path)       // original logo
+image.poster(movie.poster_path)      // w500 poster
+image.backdrop(movie.backdrop_path)  // w1280 backdrop
+image.profile(person.profile_path)   // w185 profile
+image.logo(company.logo_path)        // original logo
 ```
 
 ---
 
 ## 💡 Examples
 
-### React Server Component (Next.js App Router)
+### Next.js Server Component
 
-```tsx
+```typescript
+// app/movies/page.tsx
 import { TMDB, image } from '@abdo/tmdb-api'
 
 const api = new TMDB({
   apiKey: process.env.TMDB_API_KEY!
 })
 
-export default async function MovieGrid() {
+export default async function MoviesPage() {
   const { results } = await api.movies.popular()
-  
+
   return (
-    <div className="grid grid-cols-4 gap-4">
-      {results.map(movie => (
-        <div key={movie.id} className="group">
-          <img 
-            src={image.poster(movie.poster_path)!} 
-            alt={movie.title}
-            className="rounded-lg shadow-lg transition-transform group-hover:scale-105"
-          />
-          <h3 className="mt-2 font-semibold">{movie.title}</h3>
-          <p className="text-sm text-gray-600">⭐ {movie.vote_average.toFixed(1)}</p>
+    <main>
+      <h1>Popular Movies</h1>
+      <div className="grid">
+        {results.map((movie) => (
+          <div key={movie.id}>
+            <img
+              src={image.poster(movie.poster_path)!}
+              alt={movie.title}
+            />
+            <h3>{movie.title}</h3>
+            <span>⭐ {movie.vote_average.toFixed(1)}</span>
+          </div>
+        ))}
+      </div>
+    </main>
+  )
+}
+```
+
+### Express.js API
+
+```typescript
+// server.ts
+import express from 'express'
+import { TMDB, TMDBError } from '@abdo/tmdb-api'
+
+const app = express()
+const api = new TMDB({ apiKey: process.env.TMDB_API_KEY! })
+
+app.get('/api/movies/popular', async (req, res) => {
+  try {
+    const movies = await api.movies.popular()
+    res.json(movies)
+  } catch (error) {
+    if (error instanceof TMDBError) {
+      res.status(error.statusCode).json({ error: error.message })
+    } else {
+      res.status(500).json({ error: 'Internal server error' })
+    }
+  }
+})
+
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000')
+})
+```
+
+### React Component
+
+```typescript
+// MovieCard.tsx
+import { useEffect, useState } from 'react'
+import { TMDB, image } from '@abdo/tmdb-api'
+import type { Movie } from '@abdo/tmdb-api'
+
+const api = new TMDB({
+  apiKey: process.env.NEXT_PUBLIC_TMDB_API_KEY!
+})
+
+export function HorrorMovies() {
+  const [movies, setMovies] = useState<Movie[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    api.movies.horror()
+      .then(({ results }) => setMovies(results))
+      .finally(() => setLoading(false))
+  }, [])
+
+  if (loading) return <div>Loading...</div>
+
+  return (
+    <div>
+      {movies.map((movie) => (
+        <div key={movie.id}>
+          <img src={image.w342(movie.poster_path)!} alt={movie.title} />
+          <h4>{movie.title}</h4>
         </div>
       ))}
     </div>
@@ -260,85 +345,36 @@ export default async function MovieGrid() {
 }
 ```
 
-### Express.js API Route
+### Advanced Movie Page
 
 ```typescript
-import express from 'express'
-import { TMDB, TMDBError } from '@abdo/tmdb-api'
-
-const app = express()
-const api = new TMDB({ apiKey: process.env.TMDB_API_KEY! })
-
-app.get('/api/movies/:id', async (req, res) => {
-  try {
-    const movie = await api.movies.details(Number(req.params.id))
-    res.json({ success: true, data: movie })
-  } catch (error) {
-    if (error instanceof TMDBError) {
-      return res.status(error.statusCode).json({ 
-        success: false, 
-        error: error.message 
-      })
-    }
-    res.status(500).json({ success: false, error: 'Internal server error' })
-  }
-})
-
-app.listen(3000, () => console.log('🚀 Server running on port 3000'))
-```
-
-### Building a Movie Page
-
-```typescript
-async function getMoviePage(movieId: number) {
-  const [
-    movie,
-    cast,
-    videos,
-    similar,
-    recommendations
-  ] = await Promise.all([
+// MoviePage.tsx
+async function getMovieData(movieId: number) {
+  const [movie, cast, videos, similar] = await Promise.all([
     api.movies.details(movieId),
     api.movies.cast(movieId),
     api.movies.videos(movieId),
-    api.movies.similar(movieId),
-    api.movies.recommendations(movieId)
+    api.movies.similar(movieId)
   ])
+
+  const trailer = videos.results.find(
+    (video) => video.type === 'Trailer'
+  )
 
   return {
     movie,
     cast: cast.cast.slice(0, 10),
-    trailer: videos.results.find(v => v.type === 'Trailer'),
+    trailer,
     similar: similar.results.slice(0, 6),
-    recommendations: recommendations.results.slice(0, 6),
     streamUrl: api.player.movie(movieId)
   }
 }
-```
 
-### Genre-Based Discovery Page
-
-```typescript
-async function getGenrePage(genre: string, page = 1) {
-  const genreMap = {
-    action: () => api.movies.action(page),
-    comedy: () => api.movies.comedy(page),
-    horror: () => api.movies.horror(page),
-    scifi: () => api.movies.scienceFiction(page),
-    romance: () => api.movies.romance(page),
-  }
-
-  const fetcher = genreMap[genre as keyof typeof genreMap]
-  if (!fetcher) throw new Error(`Unknown genre: ${genre}`)
-
-  const { results, total_pages } = await fetcher()
-  
-  return {
-    movies: results,
-    hasMore: page < total_pages,
-    nextPage: page + 1
-  }
-}
+// Usage
+const data = await getMovieData(550)
+console.log(data.movie.title)           // "Fight Club"
+console.log(data.trailer?.key)          // YouTube trailer key
+console.log(data.streamUrl)             // Embed URL
 ```
 
 ---
@@ -348,71 +384,37 @@ async function getGenrePage(genre: string, page = 1) {
 ```typescript
 import { TMDB, TMDBError } from '@abdo/tmdb-api'
 
-const api = new TMDB({ 
+const api = new TMDB({
   apiKey: process.env.TMDB_API_KEY!,
-  timeout: 5000 // 5 second timeout
+  timeout: 5000
 })
 
 try {
-  const movie = await api.movies.details(999999)
+  const movie = await api.movies.details(550)
+  console.log(movie.title)
 } catch (error) {
   if (error instanceof TMDBError) {
+    // Handle specific errors
     switch (error.statusCode) {
       case 401:
-        console.error('❌ Invalid API key')
+        console.error('Invalid API key')
         break
       case 404:
-        console.error('🔍 Movie not found')
+        console.error('Movie not found')
         break
       case 429:
-        console.error('⏳ Rate limit exceeded - wait before retrying')
+        console.error('Rate limit exceeded')
         break
       case 408:
-        console.error('⏰ Request timed out')
+        console.error('Request timeout')
         break
       default:
-        console.error(`❌ Error ${error.statusCode}: ${error.message}`)
+        console.error(`Error: ${error.message}`)
     }
+  } else {
+    console.error('Unexpected error:', error)
   }
 }
-```
-
----
-
-## 🎯 Supported Environments
-
-| Environment | Status | Notes |
-|------------|--------|-------|
-| **Next.js App Router** | ✅ | Perfect for Server Components |
-| **Next.js Pages Router** | ✅ | `getServerSideProps` / `getStaticProps` |
-| **Express.js** | ✅ | Full server-side support |
-| **Astro** | ✅ | Works in `.astro` and endpoints |
-| **Remix** | ✅ | Loader functions & actions |
-| **Nuxt 3** | ✅ | Server routes & API endpoints |
-| **Vercel Functions** | ✅ | Edge & Serverless |
-| **Node.js** | ✅ | v16+ supported |
-
----
-
-## 📖 TypeScript Support
-
-```typescript
-import type { 
-  Movie, 
-  MovieDetails, 
-  TVShow, 
-  TVShowDetails,
-  Cast, 
-  PaginatedResponse,
-  TMDBConfig 
-} from '@abdo/tmdb-api'
-
-// Full IntelliSense support
-const movie: MovieDetails = await api.movies.details(550)
-
-// All responses are fully typed
-const { results, page, total_pages }: PaginatedResponse<Movie> = 
-  await api.movies.popular()
 ```
 
 ---
@@ -421,74 +423,81 @@ const { results, page, total_pages }: PaginatedResponse<Movie> =
 
 ```typescript
 const api = new TMDB({
-  apiKey: process.env.TMDB_API_KEY!,  // Required
-  baseUrl: 'https://api.themoviedb.org/3', // Optional (default)
-  timeout: 10000 // Optional (default: 10000ms)
+  apiKey: 'your_api_key',            // Required
+  baseUrl: 'https://api.themoviedb.org/3', // Optional
+  timeout: 10000                      // Optional (default: 10000ms)
 })
+```
+
+| Option | Type | Required | Default | Description |
+|--------|------|----------|---------|-------------|
+| `apiKey` | `string` | ✅ Yes | - | Your TMDB API key |
+| `baseUrl` | `string` | ❌ No | `https://api.themoviedb.org/3` | TMDB API base URL |
+| `timeout` | `number` | ❌ No | `10000` | Request timeout in ms |
+
+---
+
+## 📘 TypeScript
+
+```typescript
+import type {
+  Movie,
+  MovieDetails,
+  TVShow,
+  TVShowDetails,
+  Season,
+  Episode,
+  Cast,
+  Crew,
+  Video,
+  Image,
+  Review,
+  Person,
+  PaginatedResponse,
+  TMDBConfig,
+  GenreName,
+  ImageSize
+} from '@abdo/tmdb-api'
+
+// Full type inference
+const movie: MovieDetails = await api.movies.details(550)
+
+// Generic types
+const { results, page, total_pages }: PaginatedResponse<Movie> = 
+  await api.movies.popular()
+
+// IntelliSense for genre names
+const genre: GenreName = 'scienceFiction' // Autocomplete works
 ```
 
 ---
 
-## 📊 Complete Method Reference
+## 🎯 Supported Environments
 
-<details>
-<summary><b>All Available Methods (Click to expand)</b></summary>
-
-### Movies
-| Method | Description |
-|--------|-------------|
-| `movies.popular(page?)` | Popular movies |
-| `movies.trending(window?)` | Trending movies (day/week) |
-| `movies.nowPlaying(page?)` | Now playing in theaters |
-| `movies.upcoming(page?)` | Upcoming releases |
-| `movies.topRated(page?)` | Top rated movies |
-| `movies.latest()` | Latest added movie |
-| `movies.details(id)` | Full movie details |
-| `movies.cast(id)` | Movie cast & crew |
-| `movies.videos(id)` | Trailers & videos |
-| `movies.images(id)` | Posters & backdrops |
-| `movies.recommendations(id)` | Recommended movies |
-| `movies.similar(id)` | Similar movies |
-| `movies.reviews(id)` | User reviews |
-
-### TV Shows
-| Method | Description |
-|--------|-------------|
-| `tv.popular(page?)` | Popular TV shows |
-| `tv.trending(window?)` | Trending TV shows |
-| `tv.topRated(page?)` | Top rated TV shows |
-| `tv.airingToday(page?)` | Airing today |
-| `tv.onTheAir(page?)` | Currently on air |
-| `tv.details(id)` | Full TV show details |
-| `tv.cast(id)` | TV show cast |
-| `tv.videos(id)` | Trailers & videos |
-| `tv.images(id)` | Posters & backdrops |
-| `tv.recommendations(id)` | Recommended shows |
-| `tv.similar(id)` | Similar shows |
-| `tv.reviews(id)` | User reviews |
-| `tv.seasonDetails(id, season)` | Season details |
-| `tv.episodeDetails(id, season, episode)` | Episode details |
-
-### Search
-| Method | Description |
-|--------|-------------|
-| `search.movie(query, page?)` | Search movies |
-| `search.tv(query, page?)` | Search TV shows |
-| `search.multi(query, page?)` | Multi-search |
-| `search.person(query, page?)` | Search people |
-
-</details>
+| Environment | Status |
+|-------------|--------|
+| Next.js 13+ App Router | ✅ |
+| Next.js Pages Router | ✅ |
+| Express.js | ✅ |
+| Astro | ✅ |
+| Remix | ✅ |
+| Nuxt 3 | ✅ |
+| Vercel Edge Functions | ✅ |
+| Vercel Serverless | ✅ |
+| Node.js 16+ | ✅ |
+| Bun | ✅ |
+| Deno | ✅ |
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are always welcome!
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ---
@@ -499,27 +508,11 @@ MIT © [Abdo](https://github.com/abdo)
 
 ---
 
-## ⭐ Support
+<p align="center">
+  <strong>Made with ❤️ for developers building movie & TV websites</strong>
+</p>
 
-If you find this package useful, please consider giving it a star on GitHub! It helps others discover the project.
-
----
-
-<div align="center">
-
-### Built with ❤️ for the developer community
-
-*Made for building amazing movie & TV show websites*
-
-</div>
+<p align="center">
+  <sub>If you find this useful, please ⭐ the repository!</sub>
+</p>
 ```
-
-This README features:
-- 🎨 Beautiful formatting with emojis and tables
-- 📚 Well-organized sections with clear hierarchy
-- 💡 Comprehensive examples for different use cases
-- 🔍 Easy-to-navigate API reference
-- 🚀 Framework-specific examples
-- ⚡ Professional badges and styling
-- 📖 Clear, readable structure
-- 🎯 All features highlighted prominently
