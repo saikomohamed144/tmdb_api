@@ -1,5 +1,5 @@
 {
-  "name": "@abdelrahman/tmdb-api",
+  "name": "tmdb-api",
   "version": "1.0.0",
   "description": "A professional, type-safe TMDB API wrapper for movies and TV shows",
   "main": "./dist/index.js",
