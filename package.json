@@ -1,6 +1,6 @@
 {
-  "name": "tmdb-api",
-  "version": "1.0.0",
+  "name": "tmdb-api-v1",
+  "version": "1.0.6",
   "description": "A professional, type-safe TMDB API wrapper for movies and TV shows",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
