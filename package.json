@@ -1,44 +1,44 @@
 {
-    "name": "@abdo/tmdb-api",
-    "version": "1.0.5",
-    "description": "A professional, type-safe TMDB API wrapper for movies and TV shows",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
-    "exports": {
-      ".": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.js",
-        "types": "./dist/index.d.ts"
-      }
-    },
-    "files": [
-      "dist",
-      "README.md"
-    ],
-    "scripts": {
-      "build": "tsup src/index.ts --format cjs,esm --dts --clean",
-      "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-      "prepublishOnly": "npm run build"
-    },
-    "keywords": [
-      "tmdb",
-      "movies",
-      "tv",
-      "shows",
-      "api",
-      "typescript",
-      "react",
-      "nextjs",
-      "server-side"
-    ],
-    "author": "Abdosaiko",
-    "license": "MIT",
-    "devDependencies": {
-      "tsup": "^8.0.0",
-      "typescript": "^5.3.0"
-    },
-    "engines": {
-      "node": ">=16"
+  "name": "@abdo/tmdb-api",
+  "version": "1.0.5",
+  "description": "A professional, type-safe TMDB API wrapper for movies and TV shows",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "tmdb",
+    "movies",
+    "tv",
+    "shows",
+    "api",
+    "typescript",
+    "react",
+    "nextjs",
+    "server-side"
+  ],
+  "author": "Abdo",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=16"
   }
+}
