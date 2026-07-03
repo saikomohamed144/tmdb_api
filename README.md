@@ -339,7 +339,7 @@ import type {
   Crew,
   PaginatedResponse,
   TMDBConfig 
-} from '@abdelrahman/tmdb-api';
+} from '@abdesaiko20/tmdb-api';
 
 // All responses are fully typed
 const movie: MovieDetails = await api.movies.details(550);
